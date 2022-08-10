@@ -83,16 +83,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="gasPrices_files/libs/clipboard/clipboard.min.js"></script>
-<script src="gasPrices_files/libs/quarto-html/quarto.js"></script>
-<script src="gasPrices_files/libs/quarto-html/popper.min.js"></script>
-<script src="gasPrices_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="gasPrices_files/libs/quarto-html/anchor.min.js"></script>
-<link href="gasPrices_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="gasPrices_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="gasPrices_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="gasPrices_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="gasPrices_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="QuartoGasPrices_files/libs/clipboard/clipboard.min.js"></script>
+<script src="QuartoGasPrices_files/libs/quarto-html/quarto.js"></script>
+<script src="QuartoGasPrices_files/libs/quarto-html/popper.min.js"></script>
+<script src="QuartoGasPrices_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="QuartoGasPrices_files/libs/quarto-html/anchor.min.js"></script>
+<link href="QuartoGasPrices_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="QuartoGasPrices_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="QuartoGasPrices_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="QuartoGasPrices_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="QuartoGasPrices_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p><br></p>
 <p>Curious about gas prices in Israel I found a <a href="https://www.gov.il/he/departments/general/fuel_price_historycal">governmental webpage</a> with some messy data detailing gas prices over the year. It was a great opportunity to practice data cleaning in Python (documented below) and later on rendering it as a <a href="https://quarto.org/">Quarto</a> document.</p>
-<p>Try it yourself? Download the excel files from the link above or already unzipped from <a href="https://github.com/AmitLevinson/python_playground/tree/main/gas_price/data">my GitHub repo</a></p>
+<p>Try it yourself? Download the excel files from the link above or already unzipped from <a href="https://github.com/AmitLevinson/python_playground/tree/main/gas_price/data">my GitHub repo</a>.</p>
 <details>
 <summary>
 <b>Click here for the solution</b>
@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> os.listdir(<span class="st">'data/'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>files[<span class="dv">0</span>:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>['stationprice2011.xls', 'stationprice2012.xls', 'stationprice2013.xls']</code></pre>
 </div>
 </div>
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section></details>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gasprice <span class="co"># Cleaned output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'gas_price.png'</span>, transparent <span class="op">=</span> <span class="va">False</span>, dpi <span class="op">=</span> <span class="dv">400</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="GasPrices_files/figure-html/cell-7-output-1.png" width="1043" height="697"></p>
+<p><img src="QuartoGasPrices_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
