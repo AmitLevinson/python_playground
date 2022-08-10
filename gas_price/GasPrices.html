@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> os.listdir(<span class="st">'data/'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>files[<span class="dv">0</span>:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>['stationprice2011.xls', 'stationprice2012.xls', 'stationprice2013.xls']</code></pre>
 </div>
 </div>
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    clean_df <span class="op">=</span> (df</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                .rename(columns <span class="op">=</span> {<span class="st">"תאריך"</span>: <span class="st">"datte"</span>, <span class="st">'בנזין 95 אוקטן נטול עופרת'</span> :<span class="st">'gas_price'</span>, <span class="st">"תוספת בעד שירות מלא"</span>: <span class="st">'additional_price_full_service'</span>})</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                [[<span class="st">'datte'</span>, <span class="st">'gas_price'</span>, <span class="st">'additional_price_full_service'</span>]]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                .loc[:, [<span class="st">'datte'</span>, <span class="st">'gas_price'</span>, <span class="st">'additional_price_full_service'</span>]]</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                .dropna()</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                .assign(datte <span class="op">=</span> <span class="kw">lambda</span> x: pd.to_datetime(x[<span class="st">'datte'</span>]))</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        )</span>
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section></details>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gasprice <span class="co"># Cleaned output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -286,18 +286,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fig.patch.set_facecolor(<span class="st">'white'</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.plot(gasprice.datte, gasprice.gas_price)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>, size <span class="op">=</span> <span class="dv">14</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Price per liter (NIS)'</span>, size <span class="op">=</span> <span class="dv">14</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ax.spines[[<span class="st">"right"</span>, <span class="st">'top'</span>]].set_visible(<span class="va">False</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.ylim(0,8.5)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>, size <span class="op">=</span> <span class="dv">14</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Price per liter (NIS)'</span>, size <span class="op">=</span> <span class="dv">14</span>)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.tick_params(bottom <span class="op">=</span> <span class="va">False</span>, left<span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label <span class="kw">in</span> (ax.get_xticklabels() <span class="op">+</span> ax.get_yticklabels()):</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    label.set_fontsize(<span class="dv">11</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Gas price in Israel"</span>, fontsize <span class="op">=</span> <span class="dv">24</span>, weight<span class="op">=</span> <span class="st">'bold'</span>,loc <span class="op">=</span> <span class="st">'left'</span>,  pad <span class="op">=</span> <span class="dv">20</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>ax.spines[[<span class="st">"right"</span>, <span class="st">'top'</span>]].set_visible(<span class="va">False</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label <span class="kw">in</span> (ax.get_xticklabels() <span class="op">+</span> ax.get_yticklabels()):</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    label.set_fontsize(<span class="dv">11</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Gas price in Israel"</span>, fontsize <span class="op">=</span> <span class="dv">24</span>, weight<span class="op">=</span> <span class="st">'bold'</span>,loc <span class="op">=</span> <span class="st">'left'</span>,  pad <span class="op">=</span> <span class="dv">20</span>)</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'gas_price.png'</span>, transparent <span class="op">=</span> <span class="va">False</span>, dpi <span class="op">=</span> <span class="dv">400</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="GasPrices_files/figure-html/cell-7-output-1.png" width="1043" height="697"></p>
+<p><img src="GasPrices_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
